@@ -5,6 +5,7 @@
 
   import {
     Chart as ChartJS,
+    Filler,
     Title,
     Tooltip,
     Legend,
@@ -15,6 +16,7 @@
   } from 'chart.js';
 
   ChartJS.register(
+    Filler,  
     Title,
     Tooltip,
     Legend,
@@ -26,21 +28,23 @@
 
   // Etong testData parang mock data lang cinopy paste q lang dito haha
   // https://codesandbox.io/s/github/SauravKanchan/svelte-chartjs/tree/master/sandboxes/line
+
   const xlabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July' , 'August']; //to change
   const ytemps = []; //to change
+  
   const testData = {
     labels: xlabels, ytemps,
     datasets: [
       {
         data: [65, 59, 80, 81, 56, 55, 40],
         label: 'Live Air Quality',
-        fill: true,
         lineTension: 0.4,
-        backgroundColor: 'rgb(8, 143, 143)',
-        borderColor: 'rgb(35, 26, 136)',
+        fill: true,
+        backgroundColor: 'rgb(19, 248, 0, 0.3)',
+        borderColor: 'rgb(35, 26, 136, 1)',
         borderCapStyle: 'butt',
-        borderDash: [],
-        borderDashOffset: 0.0,
+        //borderDash: [],
+        //borderDashOffset: 0.0,
         borderJoinStyle: 'miter',
         pointBorderColor: 'rgb(35, 26, 136)',
         pointBackgroundColor: 'rgb(8, 143, 143)',
@@ -51,6 +55,7 @@
         pointHoverBorderWidth: 2,
         pointRadius: 2,
         pointHitRadius: 10,
+        
         
       }
     ]
