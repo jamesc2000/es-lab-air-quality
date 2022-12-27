@@ -19,8 +19,8 @@
 			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
 				<a href="/about">About</a>
 			</li>
-			<li aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-				<a href="/sverdle">Sverdle</a>
+			<li aria-current={$page.url.pathname.startsWith('/air') ? 'page' : undefined}>
+				<a href="/air">AQM</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
@@ -111,7 +111,7 @@
 		height: 100%;
 		align-items: center;
 		padding: 0 0.5rem;
-		color: var(--color-text);
+		color: var(--color-text); 
 		font-weight: 700;
 		font-size: 0.8rem;
 		text-transform: uppercase;
@@ -121,6 +121,6 @@
 	}
 
 	a:hover {
-		color: var(--color-theme-1);
+		color: var(--color-theme-1); 
 	}
 </style>

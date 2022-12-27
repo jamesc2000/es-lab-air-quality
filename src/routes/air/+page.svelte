@@ -1,6 +1,6 @@
 <script>
     import Air from "./Air.svelte";
-</script>
+    </script>
 
 <section>
     <Air />

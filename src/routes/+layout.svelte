@@ -11,7 +11,7 @@
 	</main>
 
 	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+		<p>Created by: Group 4 - Bueno, Cruz, Lenizo, Paz, Tuling</p>
 	</footer>
 </div>
 
