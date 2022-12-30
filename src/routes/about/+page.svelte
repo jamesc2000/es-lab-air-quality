@@ -72,6 +72,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 	text-align: left;
 	position: relative;
 }
+.title{
+	color: #ff3e00;
+	font-weight: bold;
+}
 .Team .card {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     overflow: hidden;
@@ -93,7 +97,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    border: 7px solid #545252;
+    border: 7px solid #ff3e00;
 }
 
 .profile-text{
@@ -110,6 +114,6 @@ h2{
 h3{
     font-size: 17px;
     padding: 0 20px;
-    color: #545252;
+    color: #ff3e00;
 }
 </style>
