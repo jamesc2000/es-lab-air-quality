@@ -1,5 +1,12 @@
+<script>
+	import Jlau from '$lib/images/CruzJL.png';
+	import Jack from '$lib/images/LenizoJO.jpg';
+	import Kristel from '$lib/images/PazKE.png';
+	import Jeanne from '$lib/images/TulingJR.png';
+</script>
+
 <svelte:head>
-	<title>About</title>
+	<title>About Us</title>
 	<meta name="description" content="About this app" />
 </svelte:head>
 
@@ -27,7 +34,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 			</div>
 			<div class="col-lg-5">
 				<div class="card">
-					<div class="img1"><img src="images/About-Us-Dev-Pics/imgjames.jpg" alt=""> </div>
+					<div class="img1"><img src={Jlau} alt=""> </div>
 					<div class="profile-text">
 						<h2>James Laurence A. Cruz</h2>
 						<h3>2019-02106</h3>
@@ -36,7 +43,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 			</div>
 			<div class="col-lg-5">
 				<div class="card">
-					<div class="img1"><img src="images/About-Us-Dev-Pics/imgjames.jpg" alt=""> </div>
+					<div class="img1"><img src={Jack} alt=""> </div>
 					<div class="profile-text">
 						<h2>Jackilyn O. Lenizo</h2>
 						<h3>2019-02194</h3>
@@ -45,7 +52,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 			</div>
 			<div class="col-lg-5">
 				<div class="card">
-					<div class="img1"><img src="images/About-Us-Dev-Pics/imgjames.jpg" alt=""> </div>
+					<div class="img1"><img src={Kristel} alt=""> </div>
 					<div class="profile-text">
 						<h2>Kristel Erica D. Paz</h2>
 						<h3>2019-02198</h3>
@@ -54,7 +61,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 			</div>
 			<div class="col-lg-5">
 				<div class="card">
-					<div class="img1"><img src="images/About-Us-Dev-Pics/imgjames.jpg" alt=""> </div>
+					<div class="img1"><img src={Jeanne} alt=""> </div>
 					<div class="profile-text">
 						<h2>Jeanne Rose P. Tuling</h2>
 						<h3>2019-20396</h3>
