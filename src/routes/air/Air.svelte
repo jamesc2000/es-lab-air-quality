@@ -15,10 +15,11 @@
 		PointElement,
     TimeScale,
     TimeSeriesScale,
-    LineController
+    LineController,
+    Decimation
 	} from 'chart.js';
 
-	import { getDatabase, onChildAdded, orderByKey, ref, query } from 'firebase/database';
+	import { getDatabase, onChildAdded, orderByKey, ref, query, off, limitToLast } from 'firebase/database';
 	import { app } from '../../util/initFirebase';
   import { transformData } from './dataHelpers';
   import moment from "moment";
@@ -35,7 +36,8 @@
 		PointElement,
     TimeScale,
     TimeSeriesScale,
-    LineController
+    LineController,
+    Decimation
 	);
 
 	// Etong testData parang mock data lang cinopy paste q lang dito haha
@@ -100,9 +102,17 @@
 	const options = {
 		responsive: true,
     maintainAspectRatio: false,
+    parsing: false,
     scales: {
       x: {
         type: 'timeseries',
+        ticks: {
+          autoSkip: true,
+          maxTicksLimit: 8
+        },
+        time: {
+          round: "minute"
+        }
       },
       y: {
         title: {
@@ -128,17 +138,22 @@
 						borderWidth: 2
 					}
 				}
-			}
+			},
+      decimation: { // TODO: Decimation not working, pero kung ayaw talaga wag nalang haha
+        enabled: true,
+        agorithm: 'lltb',
+        samples: 10
+      }
 		}
 	};
 
 	const db = getDatabase(app);
 
-	const airQualityDataRef = query(ref(db, 'devices/james-esp32'), orderByKey());
+	const airQualityDataRef = query(ref(db, 'devices/james-esp32'), orderByKey(), limitToLast(100));
 
   function listenToDb() {
     onChildAdded(airQualityDataRef, (res) => {
-      console.log(res.val());
+      console.log(chart.data.datasets[0].data.length);
       try {
         chart.data.datasets[0].data.push(transformData(res.val()));
         chart.update();
@@ -148,6 +163,7 @@
     });
   }
 
+  listenToDb();
   onMount(() => {
     // get(child(db, "devices/james-esp32"))
     //   .then((s) => {
@@ -155,14 +171,13 @@
     //       chart.data.datasets[0].data.push(transformData(s.val()));
     //     }
     //   });
-    listenToDb();
     // mockDataUpdates();
   });
 
   onDestroy(() => {
     // Clean up
-
-  })
+    off(airQualityDataRef);
+  });
 
 </script>
 
