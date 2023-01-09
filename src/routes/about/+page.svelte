@@ -3,6 +3,7 @@
 	import Jack from '$lib/images/LenizoJO.jpg';
 	import Kristel from '$lib/images/PazKE.png';
 	import Jeanne from '$lib/images/TulingJR.png';
+	import Theron from '$lib/images/BuenoTAA.jpg';
 </script>
 
 <svelte:head>
@@ -17,7 +18,7 @@
 	<h1 class = "title1">About This System</h1>
 
 	<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Cursus turpis massa tincidunt dui ut ornare. Viverra aliquet eget sit amet tellus cras adipiscing enim eu. Quam id leo in vitae turpis massa sed. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt vitae. Consequat nisl vel pretium lectus quam. Elementum pulvinar etiam non quam. Sagittis purus sit amet volutpat consequat mauris. Ut diam quam nulla porttitor. Gravida arcu ac tortor dignissim convallis aenean. Nibh sit amet commodo nulla facilisi nullam vehicula ipsum a.
+ 	The purpose of this research is to develop an automated system for monitoring and forecasting the risk of dengue outbreaks in the Philippines using IOT Oviposition Traps. The main contribution of the study is the development of a method for automatically counting eggs and pupae in the traps, as well as a web portal to help the public become more aware of the presence of mosquitos in their area and take preventive measures against mosquito-borne diseases. The main problems addressed by the research are the labor-intensive nature of current manual mosquito trap-based monitoring systems, and the difficulty of forecasting dengue cases using data from hospital records alone.
 	</p>
 
 	<h1 class = "title">Meet Our Team</h1>
@@ -25,7 +26,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 		<div class="row">
 			<div class="col-lg-5">
 				<div class="card">
-					<div class="img1"><img src="images/About-Us-Dev-Pics/imgjames.jpg" alt=""> </div>
+					<div class="img1"><img src={Theron} alt=""> </div>
 					<div class="profile-text">
 						<h2>Theron Adrianne A. Bueno</h2>
 						<h3>2019-10752</h3>
