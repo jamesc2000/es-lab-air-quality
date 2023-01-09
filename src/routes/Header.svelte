@@ -29,8 +29,8 @@
 	</nav>
 
 	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
-			<img src={github} alt="GitHub" />
+		<a href="https://github.com/jamesc2000/es-lab-air-quality">
+			<img src={github} alt="GitHub Repo jamesc2000" />
 		</a>
 	</div>
 </header>
