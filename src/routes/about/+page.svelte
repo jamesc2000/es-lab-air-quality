@@ -15,12 +15,9 @@
 	<div class = "box">
 		
 	</div>
-	<h1 class = "title1">About This System</h1>
+	<h1 class = "title">Welcome to our Website!</h1>
 
 	<section>
-		<p>
-			Welcome to our website!
-		</p>
 		<p align="justify">
 			We started as as a group of college inviduals who share the same interest about air quality in the Philippines by distributing more information for those individuals who are concerned about the quality of air in their area. That is why the group has created an IoT-based Air Quality Monitoring System powered by ESP32 Microcontroller and MQ135 Air Quality Sensor which displays live air quality where the hardware is located. The air quality monitoring system is a critical piece of information on your home or office environment. It accurately measures the quality of indoor air, which can help you find sources of unhealthy pollutants and their effects on your health.
 		</p>
