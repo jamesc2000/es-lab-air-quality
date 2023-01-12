@@ -12,6 +12,7 @@
 		"@fontsource/fira-mono": "^4.5.10",
 		"@neoconfetti/svelte": "^1.0.0",
 		"@sveltejs/adapter-auto": "^1.0.0",
+		"@sveltejs/adapter-static": "^1.0.0",
 		"@sveltejs/kit": "^1.0.0",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
@@ -22,7 +23,7 @@
 	"dependencies": {
 		"chart.js": "^4.1.1",
 		"chartjs-adapter-moment": "^1.0.1",
-		"chartjs-plugin-annotation": "^2.1.0",
+		"chartjs-plugin-annotation": "^2.1.1",
 		"firebase": "^9.15.0",
 		"moment": "^2.29.4",
 		"svelte-chartjs": "^3.1.0"
