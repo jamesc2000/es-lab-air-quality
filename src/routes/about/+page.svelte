@@ -17,9 +17,20 @@
 	</div>
 	<h1 class = "title1">About This System</h1>
 
-	<p>
- 	The purpose of this research is to develop an automated system for monitoring and forecasting the risk of dengue outbreaks in the Philippines using IOT Oviposition Traps. The main contribution of the study is the development of a method for automatically counting eggs and pupae in the traps, as well as a web portal to help the public become more aware of the presence of mosquitos in their area and take preventive measures against mosquito-borne diseases. The main problems addressed by the research are the labor-intensive nature of current manual mosquito trap-based monitoring systems, and the difficulty of forecasting dengue cases using data from hospital records alone.
-	</p>
+	<section>
+		<p>
+			Welcome to our website!
+		</p>
+		<p>
+			We started as as a group of college inviduals who share the same interest about air quality in the Philippines by distributing more information for those individuals who are concerned about the quality of air in their area. That is why the group has created an IoT-based Air Quality Monitoring System powered by ESP32 Microcontroller and MQ135 Air Quality Sensor which displays live air quality where the hardware is located. The air quality monitoring system is a critical piece of information on your home or office environment. It accurately measures the quality of indoor air, which can help you find sources of unhealthy pollutants and their effects on your health.
+		</p>
+		<p>
+			Air quality has become a significant global concern for the human health and welfare. Too often, air pollution is an invisible killer we don't notice until it's causing various diseases such as asthma, COPD and heart disease. In addition to other symptoms caused by the inhalation of particulate matter, people's daily lives were influenced by noise levels from traffic, shipping traffic or ventilation systems.
+		</p>
+		<p>
+			Along the way, we aspire to improve our system by providing insights to users on how to improve the natural ventilation in their homes or office, as well as recommend solutions for better indoor air quality control.
+		</p>
+	</section>
 
 	<h1 class = "title">Meet Our Team</h1>
 	<div class="Team">
