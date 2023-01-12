@@ -105,7 +105,7 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    border: 7px solid #ff3e00;
+    border: 7px solid rgb(255, 62, 0);
 }
 
 .profile-text{
