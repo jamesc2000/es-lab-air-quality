@@ -1,11 +1,12 @@
 <script>
   import "../util/initFirebase";
   import Manuscript from "$lib/Lorem_ipsum.pdf";
+  import aqmLogo from '$lib/images/aqmLogo.png';
 
   let typewriterText = "";
     const subtitles = [
         "Easily keep track of the air quality in your location!",
-        "A system that can help us breathe healthy and be healthy"
+        "A system that can help us breathe healthy and be healthy!"
     ];
     let currentSubtitle = 0;
     function typeChar(currText, goalText) {
@@ -53,8 +54,9 @@
 
 
 <section>
+  <!-- <div class="logo"><img src={aqmLogo} alt="AQM Logo"></div> -->
   <div class="hero">
-    <!-- <div class="logo-container"><img src={logoTypeOnly} alt="canis logo"></div> -->
+    <img class="logo" src={aqmLogo} alt="AQM Logo">
     <span class="subtitle">
         {typewriterText}
     </span>
@@ -91,10 +93,24 @@
     margin-bottom: 3em;
     margin-left: auto;
     margin-right: auto;
-    height: 112px;
+    height: 270px;
     width: 100%;
   }
 
+  .logo{
+    /* width: 100%; */
+    /* padding-top: 10px;
+    padding-bottom: 10px; */
+    height: 250px;
+    /* scale: 1; */
+    align-items: center;
+    position: relative;
+    
+  }
+  .subtitle{
+  font-weight: bold;
+  font-size: 20px;
+  }
   .description {
     background-color: #fafafa;
     color: #333;
