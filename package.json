@@ -23,7 +23,7 @@
 	"dependencies": {
 		"chart.js": "^4.1.1",
 		"chartjs-adapter-moment": "^1.0.1",
-		"chartjs-plugin-annotation": "^2.1.0",
+		"chartjs-plugin-annotation": "^2.1.1",
 		"firebase": "^9.15.0",
 		"moment": "^2.29.4",
 		"svelte-chartjs": "^3.1.0"

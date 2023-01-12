@@ -1,6 +1,9 @@
 <script>
 	// Everytime na gusto natin gamitin si chartjs for a component, eto eto mga need i import
 	// tas need din sila i-register for some reason di q alam bakit haha
+	import aq1 from '$lib/images/aq1.png';
+	import aq2 from '$lib/images/aq2.png';
+	import aq3 from '$lib/images/aq3.png';
 	import { Chart } from 'svelte-chartjs';
 	import { onMount, onDestroy } from 'svelte';
 	import annotationPlugin from 'chartjs-plugin-annotation';
@@ -125,7 +128,7 @@
 			y: {
 				title: {
 					display: true,
-					text: 'value'
+					text: 'Value in ppm'
 				}
 			}
 		},
@@ -134,18 +137,30 @@
 			annotation: {
 				annotations: {
 					line1: {
-						label1: {
-							type: 'label',
-							backgroundColor: 'rgba(245,245,245)',
-							content: ['wqq']
-						},
 						type: 'line',
-						yMin: 50,
-						yMax: 50,
-						borderColor: 'rgb(255, 99, 132)',
-						borderWidth: 2
-					}
+						yMin: 400,
+						yMax: 400,
+						borderColor: 'rgba(39, 245, 62, 1)',
+						borderWidth: 4,
+					},
+					line2: {
+						type: 'line',
+						yMin: 1000,
+						yMax: 1000,
+						borderColor: 'rgba(235, 245, 39, 1)',
+						borderWidth: 4,
+					},
+					line3: {
+						type: 'line',
+						yMin: 2000,
+						yMax: 2000,
+						borderColor: 'rgba(255, 99, 132,1)',
+						borderWidth: 4,
+					},
+					
 				}
+
+				
 			},
 			decimation: {
 				// TODO: Decimation not working, pero kung ayaw talaga wag nalang haha
@@ -154,6 +169,8 @@
 				samples: 10
 			}
 		}
+
+		
 	};
 
 	const db = getDatabase(app);
@@ -199,7 +216,28 @@
 		<!-- Yung Line component, eto na yung mismong chart mismo, kumbaga -->
 		<!-- wrapper siya nung mga canvas canvas eme. Dito ang need nalang niya -->
 		<!-- na parameters is yung "data" and "options" -->
-		<Chart bind:chart type="line" height="200" width="350" data={chartData} {options} />
+		<Chart bind:chart type="line" height="400" width="400" data={chartData} {options} />
+	</div>
+
+	<div class = "ppm">
+		<div class = "card">
+			<div class="imgbx"><img src={aq1} width="150" height="150" alt=""></div>
+			<h2 class="text">400 ppm:</h2>
+			<h2 class="desc">Average outdoor air level</h2>
+		</div>
+
+		<div class = "card">
+			<div class="imgbx"><img src={aq2} width="150" height="150" alt=""></div>
+			<h2 class="text">400 -1000 ppm:</h2>
+			<h2 class="desc">Typical level found in occupied spaces with good air exchange</h2>
+		</div>
+
+		<div class = "card">
+			<div class="imgbx"><img src={aq3} width="150" height="150"alt=""></div>
+			<h2 class="text">1000 - 2000 ppm:</h2>
+			<h2 class="desc">Level associated with complaints of drowsiness and poor air</h2>
+		</div>
+		<h3 class="source"> from: https://www.dhs.wisconsin.gov/chemical/carbondioxide.htm </h3>
 	</div>
 </section>
 
@@ -207,6 +245,58 @@
 	.chartContainer {
 		background-color: rgb(255, 255, 255);
 		border-radius: 15px;
-		padding: 25px;
+		padding: 20px;
+	}
+
+	.ppm{
+		position: relative;
+		width: 100%;
+		height: auto;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		margin-top: 2px;
+		
+	}
+
+	.ppm .card{
+		width: 25%;
+		height: 250px;
+		position: relative;
+		background:rgb(255, 255, 255);
+		margin: 15px 10px;
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+		transition: 0.3s ease-in-out;
+		margin-top: 7%;
+	}
+
+	.ppm .card .imgbx{
+		position: relative;
+		top: -60px;
+		left: 20%;
+	}
+
+	.ppm .card .imgbx img{
+		max-width: 100%;
+	}
+
+	.imgbx:hover img{
+		transform: scale(1.1);
+	}
+
+	.text{
+		text-align: center;
+		font-weight:900;
+	}
+
+	.desc{
+		text-align: center;
+	}
+
+	.source{
+		color: darkgrey;
 	}
 </style>
