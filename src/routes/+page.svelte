@@ -1,5 +1,6 @@
 <script>
   import "../util/initFirebase";
+  import Manuscript from "$lib/Lorem_ipsum.pdf";
 </script>
 
 <svelte:head>
@@ -22,7 +23,7 @@
 
 <div class="resources">
   <h1>Resources</h1>
-  <a href="FinalManuscript.pdf">Full Research Paper</a>
+  <a href={Manuscript}>Full Research Paper</a>
   <a href="about">About</a>
 </div>
 
