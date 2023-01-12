@@ -29,12 +29,14 @@
 		ref,
 		query,
 		off,
-		limitToLast
+		limitToLast,
+		get
 	} from 'firebase/database';
 	import { app } from '../../util/initFirebase';
 	import { transformData } from './dataHelpers';
 	import moment from 'moment';
 	import 'chartjs-adapter-moment';
+	import { getHourlyData, getDailyData } from './chartActions'
 
 	ChartJS.register(
 		Filler,
@@ -104,7 +106,7 @@
 				pointHoverBackgroundColor: 'rgb(0, 0, 0)',
 				pointHoverBorderColor: 'rgb(111, 143, 175)',
 				pointHoverBorderWidth: 2,
-				pointRadius: 2,
+				pointRadius: 0,
 				pointHitRadius: 10
 			}
 		]
@@ -116,13 +118,14 @@
 		parsing: false,
 		scales: {
 			x: {
-				type: 'timeseries',
+				type: 'time',
 				ticks: {
 					autoSkip: true,
 					maxTicksLimit: 8
 				},
 				time: {
-					round: 'minute'
+					round: 'minute',
+					unit: 'minute'
 				}
 			},
 			y: {
@@ -161,25 +164,18 @@
 				}
 
 				
-			},
-			decimation: {
-				// TODO: Decimation not working, pero kung ayaw talaga wag nalang haha
-				enabled: true,
-				agorithm: 'lltb',
-				samples: 10
 			}
 		}
-
-		
 	};
 
 	const db = getDatabase(app);
 
-	const airQualityDataRef = query(ref(db, 'devices/james-esp32'), orderByKey(), limitToLast(100));
+	let airQualityDataRef = query(ref(db, 'devices/james-esp32'), orderByKey(), limitToLast(100));
 
 	function listenToDb() {
+		airQualityDataRef = query(ref(db, 'devices/james-esp32'), orderByKey(), limitToLast(100));
 		onChildAdded(airQualityDataRef, (res) => {
-			console.log(chart.data.datasets[0].data.length);
+			// console.log(chart.data.datasets[0].data.length);
 			try {
 				chart.data.datasets[0].data.push(transformData(res.val()));
 				chart.update();
@@ -189,15 +185,81 @@
 		});
 	}
 
-	listenToDb();
+	let currentTimeView = "live"
+
+	function liveButtonHandler() {
+		if (currentTimeView == "live") return; // If we're already on live, early return
+
+		currentTimeView = "live";
+
+		// Clear data in chart
+		chart.data.datasets[0].data = [];
+		chart.data.datasets[0].pointRadius = 0;
+
+		// Get data
+		listenToDb();
+	}
+
+	async function hourlyButtonHandler() {
+		if (currentTimeView == "hourly") return; // If we're already on hourly, early return
+
+		currentTimeView = "hourly";
+		off(airQualityDataRef);
+
+		// Get data once, don't listen for changes
+		airQualityDataRef = query(ref(db, 'devices/james-esp32'), orderByKey());
+		let currChartData = await get(airQualityDataRef);
+		currChartData = Object.values(currChartData.val());
+		
+		let hourlyData = getHourlyData(currChartData); // Pass current data to transformer
+		// Clear data in chart
+		chart.data.datasets[0].data = [];
+
+		hourlyData.forEach(el => {
+			chart.data.datasets[0].data.push({
+				x: el.x.unix() * 1000,
+				y: el.y
+			});
+		});
+
+		chart.data.datasets[0].pointRadius = 2;
+		chart.config.options.scales.x.time.round = "hour";
+		chart.config.options.scales.x.time.unit = "hour";
+		chart.update();
+	}
+
+	async function dailyButtonHandler() {
+		if (currentTimeView == "daily") return; // If we're already on daily, early return
+
+		currentTimeView = "daily";
+		off(airQualityDataRef);
+
+		// Get data once, don't listen for changes
+		airQualityDataRef = query(ref(db, 'devices/james-esp32'), orderByKey());
+		let currChartData = await get(airQualityDataRef);
+		currChartData = Object.values(currChartData.val());
+		
+		let dailyData = getDailyData(currChartData); // Pass current data to transformer
+		// Clear data in chart
+		chart.data.datasets[0].data = [];
+
+		dailyData.forEach(el => {
+			chart.data.datasets[0].data.push({
+				x: el.x.unix() * 1000,
+				y: el.y
+			});
+		});
+
+		chart.data.datasets[0].pointRadius = 2;
+		chart.config.options.scales.x.time.round = "day";
+		chart.config.options.scales.x.time.unit = "day";
+		chart.update();
+	}
+
 	onMount(() => {
-		// get(child(db, "devices/james-esp32"))
-		//   .then((s) => {
-		//     if (s.exists()) {
-		//       chart.data.datasets[0].data.push(transformData(s.val()));
-		//     }
-		//   });
-		// mockDataUpdates();
+		if (currentTimeView == "live") {
+			listenToDb();
+		}
 	});
 
 	onDestroy(() => {
@@ -216,7 +278,12 @@
 		<!-- Yung Line component, eto na yung mismong chart mismo, kumbaga -->
 		<!-- wrapper siya nung mga canvas canvas eme. Dito ang need nalang niya -->
 		<!-- na parameters is yung "data" and "options" -->
-		<Chart bind:chart type="line" height="400" width="400" data={chartData} {options} />
+		<Chart bind:chart type="line" data={chartData} {options} />
+	</div>
+	<div class="chartButtons">
+		<button class:active="{currentTimeView === 'live'}" on:click={liveButtonHandler}>Live</button>
+		<button class:active="{currentTimeView === 'hourly'}" on:click={hourlyButtonHandler}>Hourly</button>
+		<button class:active="{currentTimeView === 'daily'}" on:click={dailyButtonHandler}>Daily</button>
 	</div>
 
 	<div class = "ppm">
@@ -246,6 +313,7 @@
 		background-color: rgb(255, 255, 255);
 		border-radius: 15px;
 		padding: 20px;
+		height: 400px;
 	}
 
 	.ppm{
@@ -298,5 +366,33 @@
 
 	.source{
 		color: darkgrey;
+	}
+
+	.chartButtons {
+		display: flex;
+		flex-direction: row;
+		margin-left: auto;
+		margin-right: auto;
+
+		align-items: center;
+		justify-content: center;
+	}
+
+	.chartButtons > button {
+		margin: 0.5rem 2rem;
+		height: 2rem;
+		padding-bottom: 1rem;
+		transition: color 0.2s linear;
+		border: none;
+		cursor: pointer;
+	}
+
+	.chartButtons > button:hover {
+		color: var(--color-theme-1); 
+	}
+
+	.chartButtons > .active {
+		color: var(--color-theme-1);
+		border-bottom: 5px solid var(--color-theme-1);
 	}
 </style>
