@@ -1,6 +1,6 @@
 <script>
   import "../util/initFirebase";
-  import Manuscript from "$lib/Lorem_ipsum.pdf";
+  import Manuscript from "$lib/Group-4-Manuscript.pdf";
   import aqmLogo from '$lib/images/aqmLogo.png';
 
   let typewriterText = "";
